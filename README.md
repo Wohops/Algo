@@ -1,7 +1,7 @@
 Algorithmic
 ====
 
-Repository dedicated to store [my JAVA solutions](http://uhunt.felix-halim.net/id/608511) of algorithmic problems such as the one from [UVa Online Judge](uva.onlinejudge.org/).
+Repository dedicated to store [my JAVA solutions](http://uhunt.felix-halim.net/id/608511) of algorithmic problems such as the one from [UVa Online Judge](http://uva.onlinejudge.org/).
 
 | Number | Title | Status | Date | Comment |
 | --- |---| ---| --- | --- | --- |
