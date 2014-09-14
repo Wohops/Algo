@@ -6,9 +6,13 @@ class Main {
     public static void main(String args[]) {
         Scanner in = new Scanner(System.in);
         Solver solver = new Solver();
-        while (in.hasNextLine()) {
-            String result = solver.solve(in.nextLine());
-            if (result != null) {
+        int[] values = new int[9];
+        int currentNumber = 0;
+        while (in.hasNext() && in.hasNextInt()) {
+            values[currentNumber++] = in.nextInt();
+            if (currentNumber == 9) {
+                currentNumber = 0;
+                String result = solver.solve(values);
                 System.out.println(result);
             }
         }
@@ -28,21 +32,10 @@ class Solver {
      * @return The string with the color chosen for each bin and the number of
      *         movements
      */
-    public String solve(String line) {
-        String[] ns = line.trim().split("\\s+");
-        if (ns.length != 9) {
-            return null;
-        }
-
+    public String solve(int[] bottles) {
         char[] lbl = new char[] { 'B', 'G', 'C' };
 
-        // count bottles
-        int[] bottles = new int[9];
-        for (int i = 0; i < 9; i++) {
-            bottles[i] = Integer.parseInt(ns[i]);
-        }
-
-        int[][] cbn = new int[][] { { 0, 2, 1 }, { 0, 1, 2 }, { 2, 1, 0 }, { 2, 0, 1 }, { 1, 0, 2 }, { 1, 2, 0 } };
+        int[][] cbn = new int[][] { { 0, 2, 1 }, { 0, 1, 2 }, { 2, 0, 1 }, { 2, 1, 0 }, { 1, 0, 2 }, { 1, 2, 0 } };
         int[] results = new int[cbn.length];
         String[] lbls = new String[cbn.length];
         for (int i = 0; i < cbn.length; i++) {
@@ -61,6 +54,21 @@ class Solver {
         }
 
         return lbls[bestCbnIndex] + " " + results[bestCbnIndex];
+    }
+
+    public String solve(String line) {
+        String[] ns = line.trim().split("\\s+");
+        if (ns.length != 9) {
+            return null;
+        }
+
+        // count bottles
+        int[] bottles = new int[9];
+        for (int i = 0; i < 9; i++) {
+            bottles[i] = Integer.parseInt(ns[i]);
+        }
+
+        return this.solve(bottles);
     }
 
     private int swap(int[] bottles, int[] cbn) {
