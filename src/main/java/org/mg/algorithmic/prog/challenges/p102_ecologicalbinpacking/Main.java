@@ -2,11 +2,6 @@ package org.mg.algorithmic.prog.challenges.p102_ecologicalbinpacking;
 
 import java.util.Scanner;
 
-/**
- * NOT ACCEPTED on http://uva.onlinejudge.org : 10.09.2014 02:00
- *
- * All tests are green...
- */
 class Main {
     public static void main(String args[]) {
         Scanner in = new Scanner(System.in);

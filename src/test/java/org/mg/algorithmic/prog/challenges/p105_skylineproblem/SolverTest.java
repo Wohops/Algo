@@ -12,7 +12,7 @@ public class SolverTest {
 
     @Before
     public void setUp() throws Exception {
-        InputStream is = Solver.class.getResourceAsStream("/105.txt");
+        InputStream is = Solver.class.getResourceAsStream("/105.in");
         solver = new Solver(is);
     }
 

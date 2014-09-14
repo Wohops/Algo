@@ -3,9 +3,6 @@ package org.mg.algorithmic.prog.challenges.p105_skylineproblem;
 import java.io.InputStream;
 import java.util.Scanner;
 
-/**
- * ACCEPTED on http://uva.onlinejudge.org : 12.09.2014 00:05
- */
 class Main {
     public static void main(String args[]) {
         Solver s = new Solver(System.in);

@@ -2,9 +2,6 @@ package org.mg.algorithmic.prog.challenges.p100_the3n1problem;
 
 import java.io.IOException;
 
-/**
- * ACCEPTED on http://uva.onlinejudge.org : 09.09.2014 01:13
- */
 class Main implements Runnable {
     static String ReadLn(int maxLength) {
         //
