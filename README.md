@@ -1,4 +1,4 @@
 Algo
 ====
 
-Repo dedicated to my solutions of algorithmic problems such as the one from UVa Online Judge
+Repository dedicated to store my solutions of algorithmic problems such as the one from UVa Online Judge.
