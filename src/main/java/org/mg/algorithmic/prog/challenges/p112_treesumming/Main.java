@@ -102,35 +102,76 @@ class Solver {
     }
 }
 
+/**
+ * Define a node of a binary tree.
+ */
 class Node {
 
+    /**
+     * Tells if the node is leaf
+     */
     private boolean leaf = true;
 
+    /**
+     * Tells if the node is empty
+     */
     private boolean empty = true;
 
+    /**
+     * The sum from the root
+     */
     private int sum = 0;
 
+    /**
+     * The value as a text
+     */
     private String valueAsText;
 
+    /**
+     * The value
+     */
     private Integer value;
 
+    /**
+     * The left node
+     */
     private Node left;
 
+    /**
+     * The right node
+     */
     private Node right;
 
+    /**
+     * Public constructor.
+     *
+     * @param tree
+     *            The tree as a string, defined following the given prefixed
+     *            notation.
+     */
     public Node(String tree) {
         this(tree, 0);
     }
 
+    /**
+     * Recursive constructor building a tree, based on the tree as string.
+     *
+     * @param tree
+     *            The tree as a string
+     * @param sumParent
+     *            The sum from the previous parent node
+     */
     private Node(String tree, int sumParent) {
-        String[] node = cleanNode(tree);
         valueAsText = tree;
+        String[] node = cleanNode(tree);
         empty = node == null;
         if (!empty) {
             value = Integer.parseInt(node[0]);
             sum = sumParent + value;
+            // recursive calls
             left = new Node(node[1], sum);
             right = new Node(node[2], sum);
+            // clean node
             leaf = right.isEmpty() && left.isEmpty();
             if (right.isEmpty()) {
                 right = null;
@@ -141,20 +182,38 @@ class Node {
         }
     }
 
+    /**
+     * Transform a string-based node to an array of string of length 3. Value of
+     * the result based on position:
+     * <ol>
+     * <li>The value of the current node</li>
+     * <li>The structure of its left node</li>
+     * <li>The structure of its right node</li>
+     * </ol>
+     *
+     * @param nodeAsText
+     *            The node as a text
+     * @return The node split in 3 parts
+     */
     private String[] cleanNode(String nodeAsText) {
         // remove first and last parenthesis
         String node = nodeAsText.substring(1, nodeAsText.length() - 1);
+        // case of empty tree
         if (node.isEmpty()) {
             return null;
         }
+
         String[] result = new String[3];
         char[] n = node.toCharArray();
+
         int start = 0;
         int pointer = 0;
+        int openedParenthesis = 0;
+
         boolean getInt = false;
         boolean hadInt = false;
         boolean foundChild = false;
-        int openedParenthesis = 0;
+
         while (pointer < n.length) {
             char c = n[pointer];
             if (!getInt && c >= '0' && c <= '9') {
@@ -165,6 +224,7 @@ class Node {
                 if (!getInt && hadInt) {
                     getInt = true;
                     start = pointer;
+                    // found the node value
                     result[0] = node.substring(0, pointer).trim();
                 }
             } else if (c == ')') {
